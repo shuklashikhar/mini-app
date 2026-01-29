@@ -4,21 +4,28 @@ import jwt from "jsonwebtoken";
 import cors from "cors";
 import productsRoutes from "./routes/products.js";
 import translationsRouter from "./routes/translations.js";
+import authRouter from "./routes/auth.js";
 import { query } from "./db/index.js";
+import pricelistRouter from "./routes/pricelist.js";
 
 const JWT_SECRET = "secretkey";
 
 
 const app = express();
+
 app.use(cors({
   origin: "http://localhost:5173",
   credentials: true
 }));
 
+app.use(express.json());
+
 app.use("/translations", translationsRouter);
 
+app.use("/auth", authRouter);
 
-app.use(express.json());
+app.use("/pricelist", pricelistRouter);
+
 app.use("/products", productsRoutes);
 
 app.get("/health", async (req, res) => {

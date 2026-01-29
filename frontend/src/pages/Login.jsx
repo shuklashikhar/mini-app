@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "../styles/login.css";
 
 function Login() {
+
   const [language, setLanguage] = useState("en");
   const [langOpen, setLangOpen] = useState(false);
   const [translations, setTranslations] = useState({});
@@ -23,6 +24,40 @@ function Login() {
         console.error("Failed to load translations", err);
       });
   }, [language]);
+
+  const handleLogin = async (e) => {
+  e.preventDefault();
+
+  const email = e.target.email.value;
+  const password = e.target.password.value;
+
+  try {
+    const res = await fetch("http://localhost:3001/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.error || "Login failed");
+      return;
+    }
+
+    // ✅ Store JWT
+    localStorage.setItem("token", data.token);
+
+    // ✅ Redirect
+    window.location.href = "/pricelist";
+  } catch (err) {
+    console.error("Login error:", err);
+    alert("Something went wrong");
+  }
+};
+
 
   return (
     <div className="login-page">
@@ -95,11 +130,12 @@ function Login() {
         <div className="login-box">
           <h2>{translations.login_title ?? ""}</h2>
 
-          <form>
+          <form onSubmit={handleLogin}>
             <div className="form-group">
               <label>{translations.email_label ?? ""}</label>
               <input
                 type="email"
+                name="email"
                 placeholder={translations.email_placeholder ?? ""}
               />
             </div>
@@ -108,6 +144,7 @@ function Login() {
               <label>{translations.password_label ?? ""}</label>
               <input
                 type="password"
+                name="password"
                 placeholder={translations.password_placeholder ?? ""}
               />
             </div>

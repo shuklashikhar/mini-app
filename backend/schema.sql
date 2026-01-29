@@ -23,3 +23,15 @@ CREATE TABLE products (
     vat NUMERIC NOT NULL,
     unit TEXT NOT NULL
 );
+
+CREATE TABLE pricelist (
+  id SERIAL PRIMARY KEY,
+  article_no TEXT NOT NULL,
+  product_name TEXT NOT NULL,
+  in_price NUMERIC(10,2),
+  price NUMERIC(10,2),
+  unit TEXT,
+  in_stock INTEGER,
+  description TEXT,
+  active BOOLEAN DEFAULT true
+);

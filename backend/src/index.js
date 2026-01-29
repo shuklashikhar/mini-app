@@ -2,6 +2,7 @@ import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import cors from "cors";
+import productsRoutes from "./routes/products.js";
 import { query } from "./db/index.js";
 
 const JWT_SECRET = "secretkey";
@@ -11,6 +12,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use("/products", productsRoutes);
 
 app.get("/health", async (req, res) => {
   try {

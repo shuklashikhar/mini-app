@@ -3,14 +3,21 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import cors from "cors";
 import productsRoutes from "./routes/products.js";
+import translationsRouter from "./routes/translations.js";
 import { query } from "./db/index.js";
 
 const JWT_SECRET = "secretkey";
 
 
 const app = express();
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true
+}));
 
-app.use(cors());
+app.use("/translations", translationsRouter);
+
+
 app.use(express.json());
 app.use("/products", productsRoutes);
 

@@ -1,10 +1,15 @@
+import { Routes, Route, Navigate } from "react-router-dom";
+import Login from "./pages/Login";
+import Pricelist from "./pages/Pricelist";
+
 function App() {
- 
   return (
-    <>
-      <div>Login</div>
-    </>
-  )
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/pricelist" element={<Pricelist />} />
+      <Route path="*" element={<Navigate to="/login" />} />
+    </Routes>
+  );
 }
 
-export default App
+export default App;

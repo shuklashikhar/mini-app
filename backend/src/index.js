@@ -2,13 +2,14 @@ import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import cors from "cors";
+import dotenv from "dotenv";
 import productsRoutes from "./routes/products.js";
 import translationsRouter from "./routes/translations.js";
 import authRouter from "./routes/auth.js";
 import { query } from "./db/index.js";
 import pricelistRouter from "./routes/pricelist.js";
 
-const JWT_SECRET = "secretkey";
+dotenv.config();
 
 
 const app = express();
@@ -65,7 +66,7 @@ app.post("/login", async (req, res) => {
 
     const token = jwt.sign(
       { id: user.id, email: user.email },
-      JWT_SECRET,
+      process.env.JWT_SECRET ,
       { expiresIn: "1d" }
     );
 

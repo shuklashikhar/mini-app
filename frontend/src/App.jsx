@@ -8,6 +8,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/pricelist" element={<Pricelist />} />
       <Route path="*" element={<Navigate to="/login" />} />
+      <Route path="/pricelist" element={<Pricelist />} />
     </Routes>
   );
 }

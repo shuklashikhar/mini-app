@@ -42,12 +42,40 @@
   text-align: left;
   margin-bottom: 10px;
 }
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 36px;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  font-size: 14px;
+  color: #666;
+}
+
+.password-toggle:hover {
+  color: #000;
+}
+
 
 .form-group label {
   display: block;
   margin-bottom: 5px;
+  font-weight: 400;
   font-size: 13px;
-  color: #555;
+  color: black;
 }
 
 .form-group input {
@@ -73,9 +101,7 @@
   cursor: pointer;
 }
 
-.login-btn:hover {
-  background: #345fc2;
-}
+
 
 
 .forgot-password {
@@ -195,7 +221,7 @@
   border-radius: 4px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   z-index: 5;
-  min-width: 140px;
+  min-width: 10px;
 }
 
 .language-dropdown div {

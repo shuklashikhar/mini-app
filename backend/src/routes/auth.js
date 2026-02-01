@@ -20,7 +20,7 @@ router.post("/login", async (req, res) => {
     );
 
     if (result.rows.length === 0) {
-      return res.status(401).json({ error: "Invcd backendalid credentials" });
+      return res.status(401).json({ error: "Invalid login credentials" });
     }
 
     const user = result.rows[0];
@@ -33,7 +33,7 @@ router.post("/login", async (req, res) => {
 
     const token = jwt.sign(
       { userId: user.id },
-      process.env.JWT_SECRET || "secretkey",
+      process.env.JWT_SECRET ,
       { expiresIn: "1h" }
     );
 

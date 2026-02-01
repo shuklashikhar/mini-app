@@ -3,7 +3,6 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import cors from "cors";
 import dotenv from "dotenv";
-import productsRoutes from "./routes/products.js";
 import translationsRouter from "./routes/translations.js";
 import authRouter from "./routes/auth.js";
 import { query } from "./db/index.js";
@@ -27,7 +26,6 @@ app.use("/auth", authRouter);
 
 app.use("/pricelist", pricelistRouter);
 
-app.use("/products", productsRoutes);
 
 app.get("/health", async (req, res) => {
   try {

@@ -15,14 +15,7 @@ CREATE TABLE translations (
 );
 
 
-CREATE TABLE products (
-    id SERIAL PRIMARY KEY,
-    name TEXT NOT NULL,
-    in_price NUMERIC NOT NULL,
-    price NUMERIC NOT NULL,
-    vat NUMERIC NOT NULL,
-    unit TEXT NOT NULL
-);
+
 
 CREATE TABLE pricelist (
   id SERIAL PRIMARY KEY,

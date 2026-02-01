@@ -1,1 +1,1 @@
-export const API_BASE_URL = "https://mini-app-yqv9.onrender.com/";
+export const API_BASE_URL = "https://mini-app-yqv9.onrender.com";

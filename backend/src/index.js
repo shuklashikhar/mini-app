@@ -14,7 +14,9 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: [
+    "http://localhost:5173",
+   "https://mini-app-1-8hgn.onrender.com"],
   credentials: true
 }));
 

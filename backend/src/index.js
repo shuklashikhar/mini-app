@@ -27,15 +27,7 @@ app.use("/auth", authRouter);
 app.use("/pricelist", pricelistRouter);
 
 
-app.get("/health", async (req, res) => {
-  try {
-    await query("SELECT 1");
-    res.json({ status: "ok" });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ status: "error" });
-  }
-});
+
 
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;

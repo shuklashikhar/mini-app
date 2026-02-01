@@ -27,8 +27,6 @@ app.use("/auth", authRouter);
 app.use("/pricelist", pricelistRouter);
 
 
-
-
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
 

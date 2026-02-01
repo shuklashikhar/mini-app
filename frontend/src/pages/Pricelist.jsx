@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "../styles/pricelist.css";
+import { API_BASE_URL } from "../config.js";
 
 function Pricelist() {
   const [items, setItems] = useState([]);
@@ -27,7 +28,7 @@ function Pricelist() {
       return;
     }
 
-    fetch("http://localhost:3001/pricelist", {
+    fetch(`${API_BASE_URL}/pricelist`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -63,7 +64,7 @@ function Pricelist() {
   };
 
   const updateField = (id, field, value) => {
-    fetch(`http://localhost:3001/pricelist/${id}`, {
+    fetch(`${API_BASE_URL}/pricelist/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

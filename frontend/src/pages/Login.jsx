@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "../styles/login.css";
-
+import { API_BASE_URL } from "../config.js";
 function Login() {
   const [language, setLanguage] = useState("en");
   const [langOpen, setLangOpen] = useState(false);
@@ -14,7 +14,7 @@ function Login() {
       : "https://storage.123fakturere.no/public/flags/GB.png";
 
   useEffect(() => {
-    fetch(`http://localhost:3001/translations?lang=${language}`)
+    fetch(`${API_BASE_URL}/translations?lang=${language}`)
       .then((res) => res.json())
       .then((data) => {
         setTranslations(data);
@@ -31,7 +31,7 @@ function Login() {
     const password = e.target.password.value;
 
     try {
-      const res = await fetch("http://localhost:3001/auth/login", {
+      const res = await fetch(`${API_BASE_URL}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

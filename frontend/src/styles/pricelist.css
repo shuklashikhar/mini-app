@@ -326,24 +326,20 @@
   }
 }
 
-@media (max-width: 640px) {
-  .pl-table th:nth-child(1),
-  .pl-table td:nth-child(1),
-  .pl-table th:nth-child(3),
-  .pl-table td:nth-child(3),
-  .pl-table th:nth-child(6),
-  .pl-table td:nth-child(6),
-  .pl-table th:nth-child(7),
-  .pl-table td:nth-child(7) {
-    display: none;
-  }
-}
+
 @media (max-width: 640px) {
   .pl-table th:not(:nth-child(1)):not(:nth-child(2)):not(:nth-child(4)),
   .pl-table td:not(:nth-child(1)):not(:nth-child(2)):not(:nth-child(4)) {
     display: none;
   }
 }
+@media (max-width: 640px) {
+  .mobile-expand-row,
+  .mobile-expand-row td {
+    display: table-row !important;
+  }
+}
+
 
 
 

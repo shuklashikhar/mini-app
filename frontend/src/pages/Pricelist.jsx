@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import "../styles/pricelist.css";
 import { API_BASE_URL } from "../config.js";
+import React from "react";
 
 function Pricelist() {
+  const [expandedRowId, setExpandedRowId] = useState(null);
   const [items, setItems] = useState([]);
   const token = localStorage.getItem("token");
   const menuItems = [
@@ -150,31 +152,52 @@ function Pricelist() {
                   <th>Unit</th>
                   <th>In Stock</th>
                   <th>Description</th>
+
                   <th></th>
                 </tr>
               </thead>
 
               <tbody>
                 {items.map((item) => (
-                  <tr key={item.id}>
-                    <td>
-                      <div className="field-with-arrow">
-                        <span className="row-arrow">➜</span>
+                  <React.Fragment key={item.id}>
+                    <tr key={item.id}>
+                      <td>
+                        <div className="field-with-arrow">
+                          <span className="row-arrow">➜</span>
+                          <div className="field-pill">
+                            <input
+                              value={item.article_no}
+                              onChange={(e) =>
+                                handleChange(
+                                  item.id,
+                                  "article_no",
+                                  e.target.value,
+                                )
+                              }
+                              onBlur={() =>
+                                updateField(
+                                  item.id,
+                                  "article_no",
+                                  item.article_no,
+                                )
+                              }
+                              onKeyDown={(e) =>
+                                handleKeyDown(e, item.id, "article_no")
+                              }
+                            />
+                          </div>
+                        </div>
+                      </td>
+
+                      <td>
                         <div className="field-pill">
                           <input
-                            value={item.article_no}
-                            onChange={(e) =>
-                              handleChange(
-                                item.id,
-                                "article_no",
-                                e.target.value,
-                              )
-                            }
-                            onBlur={() =>
+                            defaultValue={item.product_name}
+                            onBlur={(e) =>
                               updateField(
                                 item.id,
-                                "article_no",
-                                item.article_no,
+                                "product_name",
+                                e.target.value,
                               )
                             }
                             onKeyDown={(e) =>
@@ -182,96 +205,116 @@ function Pricelist() {
                             }
                           />
                         </div>
-                      </div>
-                    </td>
+                      </td>
 
-                    <td>
-                      <div className="field-pill">
-                        <input
-                          defaultValue={item.product_name}
-                          onBlur={(e) =>
-                            updateField(item.id, "product_name", e.target.value)
-                          }
-                          onKeyDown={(e) =>
-                            handleKeyDown(e, item.id, "article_no")
-                          }
-                        />
-                      </div>
-                    </td>
+                      <td>
+                        <div className="field-pill">
+                          <input
+                            type="number"
+                            defaultValue={item.in_price}
+                            onBlur={(e) =>
+                              updateField(item.id, "in_price", e.target.value)
+                            }
+                            onKeyDown={(e) =>
+                              handleKeyDown(e, item.id, "article_no")
+                            }
+                          />
+                        </div>
+                      </td>
 
-                    <td>
-                      <div className="field-pill">
-                        <input
-                          type="number"
-                          defaultValue={item.in_price}
-                          onBlur={(e) =>
-                            updateField(item.id, "in_price", e.target.value)
-                          }
-                          onKeyDown={(e) =>
-                            handleKeyDown(e, item.id, "article_no")
-                          }
-                        />
-                      </div>
-                    </td>
+                      <td>
+                        <div className="field-pill">
+                          <input
+                            type="number"
+                            defaultValue={item.price}
+                            onBlur={(e) =>
+                              updateField(item.id, "price", e.target.value)
+                            }
+                            onKeyDown={(e) =>
+                              handleKeyDown(e, item.id, "article_no")
+                            }
+                          />
+                        </div>
+                      </td>
 
-                    <td>
-                      <div className="field-pill">
-                        <input
-                          type="number"
-                          defaultValue={item.price}
-                          onBlur={(e) =>
-                            updateField(item.id, "price", e.target.value)
-                          }
-                          onKeyDown={(e) =>
-                            handleKeyDown(e, item.id, "article_no")
-                          }
-                        />
-                      </div>
-                    </td>
+                      <td>
+                        <div className="field-pill">
+                          <input
+                            defaultValue={item.unit}
+                            onBlur={(e) =>
+                              updateField(item.id, "unit", e.target.value)
+                            }
+                            onKeyDown={(e) =>
+                              handleKeyDown(e, item.id, "article_no")
+                            }
+                          />
+                        </div>
+                      </td>
 
-                    <td>
-                      <div className="field-pill">
-                        <input
-                          defaultValue={item.unit}
-                          onBlur={(e) =>
-                            updateField(item.id, "unit", e.target.value)
-                          }
-                          onKeyDown={(e) =>
-                            handleKeyDown(e, item.id, "article_no")
-                          }
-                        />
-                      </div>
-                    </td>
+                      <td>
+                        <div className="field-pill">
+                          <input
+                            type="number"
+                            defaultValue={item.in_stock}
+                            onBlur={(e) =>
+                              updateField(item.id, "in_stock", e.target.value)
+                            }
+                            onKeyDown={(e) =>
+                              handleKeyDown(e, item.id, "article_no")
+                            }
+                          />
+                        </div>
+                      </td>
 
-                    <td>
-                      <div className="field-pill">
-                        <input
-                          type="number"
-                          defaultValue={item.in_stock}
-                          onBlur={(e) =>
-                            updateField(item.id, "in_stock", e.target.value)
-                          }
-                          onKeyDown={(e) =>
-                            handleKeyDown(e, item.id, "article_no")
-                          }
-                        />
-                      </div>
-                    </td>
-
-                    <td>
-                      <div className="field-pill">
-                        <input
-                          defaultValue={item.description}
-                          onBlur={(e) =>
-                            updateField(item.id, "description", e.target.value)
-                          }
-                          onKeyDown={(e) =>
-                            handleKeyDown(e, item.id, "article_no")
-                          }
-                        />
-                      </div>
-                    </td>
-                  </tr>
+                      <td>
+                        <div className="field-pill">
+                          <input
+                            defaultValue={item.description}
+                            onBlur={(e) =>
+                              updateField(
+                                item.id,
+                                "description",
+                                e.target.value,
+                              )
+                            }
+                            onKeyDown={(e) =>
+                              handleKeyDown(e, item.id, "article_no")
+                            }
+                          />
+                        </div>
+                      </td>
+                      <span
+                        className="row-dots"
+                        onClick={() =>
+                          setExpandedRowId(
+                            expandedRowId === item.id ? null : item.id,
+                          )
+                        }
+                      >
+                        …
+                      </span>
+                    </tr>
+                    {expandedRowId === item.id && (
+                      <tr>
+                        <td colSpan="3">
+                          <div className="mobile-expand-content">
+                            <div>
+                              <b>In Price:</b> {item.in_price}
+                            </div>
+                            <div>
+                              <b>Unit:</b> {item.unit}
+                            </div>
+                            <div>
+                              <b>Stock:</b> {item.in_stock}
+                            </div>
+                            <div>
+                              <b>Description:</b> {item.description}
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    )}
+                  </React.Fragment>
                 ))}
               </tbody>
             </table>

@@ -301,6 +301,18 @@
 .pl-table td {
   padding: 6px 8px;
 }
+/* Horizontal three dots at end of row */
+.row-dots {
+  margin-left: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #555;
+  float: right;
+}
+
+.row-dots:hover {
+  color: #000;
+}
 
 
 @media (max-width: 1024px) {
@@ -326,6 +338,14 @@
     display: none;
   }
 }
+@media (max-width: 640px) {
+  .pl-table th:not(:nth-child(1)):not(:nth-child(2)):not(:nth-child(4)),
+  .pl-table td:not(:nth-child(1)):not(:nth-child(2)):not(:nth-child(4)) {
+    display: none;
+  }
+}
+
+
 
 @media (max-width: 1024px) {
   
